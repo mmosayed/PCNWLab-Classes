@@ -7,8 +7,35 @@
         isSquare() // Returns true or false if this rectangle is a square or not
 */
 
+class Rectangle {
+        constructor(length, height){
+               this.length = length;
+               this.height = height;
+        }
+        calculateArea() {
+                // A=wl
+                return this.length * this.height;
+        }
+        calculatePerimeter() {
+                //P =2(l+w)
+                return (this.length + this.height) * 2
+        }
 
+        isSquare() {
+         return this.length === this.height
+        }
+        
+}
 
+const rectangle = new Rectangle (10, 5);
+console.log(rectangle.calculateArea());
+console.log(rectangle.calculatePerimeter());
+console.log(rectangle.isSquare());
+
+const square = new Rectangle (5, 5);
+console.log(square.calculateArea());
+console.log(square.calculatePerimeter());
+console.log(square.isSquare());
 
 /*  2
     Define a @class called Circle
