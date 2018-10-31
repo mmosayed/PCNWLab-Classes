@@ -6,8 +6,29 @@
         calculatePerimeter() // Returns the perimeter of the rectangle
         isSquare() // Returns true or false if this rectangle is a square or not
 */
+class Rectangle {
+        constructor (length, height) {
+                this.length = length;
+                this.height = height;
+                this.calculateArea = () => length * height;
+                this.calculatePerimeter = () => length*2 + height*2;
+                this.isSquare = () => (length === height) ? true : false;
+        }
+}
+//test
+console.log('----------------- 1. Rectangle test ------------------------');
+const rect1 = new Rectangle(2,2);
+const rect2 = new Rectangle(3,4);
 
-
+console.log(rect1);
+console.log('area = ', rect1.calculateArea());
+console.log('perimeter = ', rect1.calculatePerimeter());
+console.log('square? = ', rect1.isSquare());
+console.log(rect2);
+console.log('area = ', rect2.calculateArea());
+console.log('perimeter = ', rect2.calculatePerimeter());
+console.log('square? = ', rect2.isSquare());
+console.log('--------------------------------------------');
 
 
 /*  2
