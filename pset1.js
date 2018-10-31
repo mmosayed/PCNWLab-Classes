@@ -39,8 +39,28 @@ console.log('--------------------------------------------');
         calculateDiameter() // returns the diameter of the circle
         calculateCircumfrence() // Returns the circumfrence of the circle
 */
+class Circle{
+        constructor (radius){
+                this.radius = radius;
+                this.calculateArea = ()=> Math.PI*radius**2;
+                this.calculateDiameter = ()=> radius * 2;
+                this.calculateCircumference = ()=> Math.PI * radius * 2;
+        }
+}
+//test
+console.log('----------------- 2. Circle test ------------------------');
+const circle1 = new Circle(1);
+const circle2 = new Circle(5);
 
-
+console.log(circle1);
+console.log('area = ', circle1.calculateArea());
+console.log('diameter = ', circle1.calculateDiameter());
+console.log('circumference = ', circle1.calculateCircumference());
+console.log(circle2);
+console.log('area = ', circle2.calculateArea());
+console.log('diameter = ', circle2.calculateDiameter());
+console.log('circumference = ', circle2.calculateCircumference());
+console.log('--------------------------------------------');
 
 /*  3
     Define a @class called Pet
