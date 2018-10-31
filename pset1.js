@@ -6,8 +6,23 @@
         calculatePerimeter() // Returns the perimeter of the rectangle
         isSquare() // Returns true or false if this rectangle is a square or not
 */
-
-
+class Rectangle{
+    constructor(length, height){
+        this.height = height;
+        this.length = length;
+    }
+    calculateArea(){
+        return this.height * this.length;
+    }
+    calculatePerimeter(){
+        return this.height + this.height + this.length + this.length;
+    }
+    isSquare(){
+        if(this.length === this.height)
+            return true;
+        return false;        
+    }
+}
 
 
 /*  2
@@ -18,7 +33,20 @@
         calculateDiameter() // returns the diameter of the circle
         calculateCircumfrence() // Returns the circumfrence of the circle
 */
-
+class Circle{
+    constructor(redius){
+        this.radius = radius;
+    }
+    calculateArea(){
+        return (this.radius**2 )* Math.PI;
+    }
+    calculateDiameter(){
+        return this.radius * 2;
+    }
+    calculateCircumfrence(){
+        return this.radius * 2 * Math.PI
+    }
+}
 
 
 /*  3
