@@ -69,8 +69,23 @@ console.log('--------------------------------------------');
         greet() // Returns the pet's special greet. Eg. "Rexy the dog said Woof!"
 */
 
+class Pet{
+        constructor(name,animal,greet){
+                this.name = name;
+                this.animal = animal;
+                this.greet = ()=> `${name} the ${animal} said ${greet}!`; 
+        }
+}
+//test
+console.log('----------------- 3. Pet test ------------------------');
+const pet1 = new Pet('Fluffy','sparrow','chirp chirp');
+const pet2 = new Pet('Rexy','dog', 'Woof');
 
-
+console.log(pet1);
+console.log('greeting = ', pet1.greet());
+console.log(pet2);
+console.log('greeting = ', pet2.greet());
+console.log('--------------------------------------------');
 /*  4
     Define a @class called Person
     With @properties: name, age, pets
