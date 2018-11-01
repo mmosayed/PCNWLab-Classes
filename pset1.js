@@ -55,8 +55,16 @@ class Circle{
     With @methods: 
         greet() // Returns the pet's special greet. Eg. "Rexy the dog said Woof!"
 */
-
-
+class Pet{
+    constructor(name, animal, greet){
+        this.name = name;
+        this.animal = animal;
+        this.greet = greet;
+    }
+    greeting(){
+        return `${this.name} the ${this.animal} said ${this.greet}!`;
+    }
+}
 
 /*  4
     Define a @class called Person
@@ -70,3 +78,30 @@ class Circle{
                    // John's pet Annabelle the cat said Meow!
                    // John's pet Elsie the cow said Moo!
 */
+class Person{
+    constructor(name, age, pets = []){
+        this.name = name;
+        this.age = age;
+        this.pets = pets;
+    }
+    profile(){
+        return `${name} is ${age} years old.`
+    }
+    addPet(pname, panimal, pgreet){
+        let pet = new Pet(pname, panimal, pgreet);
+        this.pets.push(pet);
+    }
+    meetPets(){
+        for(let i = 0; i < this.pets.length; i++){
+            console.log(`${this.name}'s pet`,this.pets[i].greeting());
+        }
+    }
+}
+let p1 = new Pet("PITA", "cat", "Meow")
+console.log(p1.greeting());
+
+let man = new Person("Bob", 30,)
+man.addPet("Ollie","Cat","Meow");
+man.addPet("Alex","Mouse","Squeek");
+man.addPet("Bob","Dog","Woof");
+man.meetPets();
