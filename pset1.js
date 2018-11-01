@@ -70,11 +70,12 @@ console.log('--------------------------------------------');
 */
 
 class Pet{
-        constructor(name,animal,greet){
+        constructor(name,animal,greeting){
                 this.name = name;
                 this.animal = animal;
-                this.greet = ()=> `${name} the ${animal} said ${greet}!`; 
+                this.greeting = greeting;
         }
+        greet() {return `${this.name} the ${this.animal} said ${this.greeting}!`}
 }
 //test
 console.log('----------------- 3. Pet test ------------------------');
@@ -82,10 +83,10 @@ const pet1 = new Pet('Fluffy','sparrow','chirp chirp');
 const pet2 = new Pet('Rexy','dog', 'Woof');
 
 console.log(pet1);
-console.log('greeting = ', pet1.greet());
+console.log('greet() = ', pet1.greet());
 console.log(pet2);
-console.log('greeting = ', pet2.greet());
-console.log('--------------------------------------------');
+console.log('greet() = ', pet2.greet());
+console.log('------------------------------------------------------');
 /*  4
     Define a @class called Person
     With @properties: name, age, pets
@@ -98,3 +99,32 @@ console.log('--------------------------------------------');
                    // John's pet Annabelle the cat said Meow!
                    // John's pet Elsie the cow said Moo!
 */
+class Person{
+        constructor(name, age, pets=[]){
+                this.name = name;
+                this.age = age;
+                if (!Array.isArray(pets)) {
+                        this.pets = [pets];
+                } else {this.pets = pets}
+        }
+        profile() { return `${this.name} is ${this.age} years old.`}
+        addPet(name, animal, greet) { this.pets.push(new Pet(name, animal, greet)); console.log(this.name +' got new pet!')}
+        meetPets() {
+                this.pets.forEach( currPet => console.log(`${this.name}'s pet ` + currPet.greet()) );
+        }
+}
+//test
+console.log('----------------- 4. Person test ------------------------');
+const person1 = new Person('Taq',28);
+const person2 = new Person('Q',30,pet1);
+
+console.log(person1);
+console.log(person1.profile());
+person1.addPet('Fatty','cow','moo');
+person1.meetPets();
+
+console.log(person2);
+console.log(person2.profile());
+person2.addPet('Kevin','lamb','meh meh~');
+person2.meetPets();
+console.log('---------------------------------------------------------------------');
