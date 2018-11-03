@@ -29,7 +29,34 @@ const external_playlist = require('./playlist');
                           Eg. "3 min 22 seconds"
 */
 
+class Song{
+constructor(name, artists, length){
+this.name = name
+this.artists = artists
+this.length = length
 
+
+}
+
+getArtists(){
+    return this.artists[0]
+
+}
+
+getFeatures(artists){
+    let features = []
+for (let i = 1 ; i< artists.length ; i++){
+     features.push(this.artists[i])
+
+}
+    return features
+}
+
+getDuration(){
+    return   this.length/60 
+}
+
+}
 
 /*  2
     Define a @class called Playlist
@@ -53,8 +80,44 @@ const external_playlist = require('./playlist');
                                  Eg. { name: "Drake", occurence: 4 }
 */
 
+class Playlist{
+constructor(name,songs){
+this.name = name
+this.songs =songs
 
 
+}
+
+addSong(name, artists, length){
+
+    const newSong = new Song(name,artists,length)
+    this.songs.push(newSong)
+
+}
+
+removeSong(name){
+    let songBank = []
+for(i = 0 ; i < this.songs.length ; i ++){
+
+if(name !== this.songs[i]){
+
+    songBank.push(songs[i])
+    this.songs = songBank
+}
+
+}
+
+return songBank
+}
+
+getNumberOfSongs(){
+  
+return this.songs.length
+
+
+}
+
+}
 
 /* 3
     Define a ***GLOBAL VARIABLE***
