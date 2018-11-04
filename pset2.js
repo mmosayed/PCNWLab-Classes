@@ -28,8 +28,27 @@ const external_playlist = require('./playlist');
         getDuration() // This returns the legnth in the song in Minutes and Seconds. 
                           Eg. "3 min 22 seconds"
 */
+class Song{
+    constructor(name,artists=[],length=0){
+        this.name = name
+        this.artists = artists
+        this.length = length
+    }
 
+    getArtists(){return this.artists[0] }
+    getFeatures(){return this.artists.slice(1)}
+    getDuration(){
+        const minutes = Math.floor(this.length / 60);
+        const seconds = this.length - minutes * 60;
+        return `${minutes} min ${seconds} seconds`
+    }
+}
+const theKill = new Song('The Kill', ['Kodak Black', 'Travis Scott', 'Offset'], 232);
 
+console.log(theKill)
+console.log(theKill.getArtists());
+console.log(theKill.getFeatures());
+console.log(theKill.getDuration());
 
 /*  2
     Define a @class called Playlist
@@ -52,6 +71,77 @@ const external_playlist = require('./playlist');
                                  If there is a tie between artists, just return any one of the tied Artists.
                                  Eg. { name: "Drake", occurence: 4 }
 */
+console.log("------------------------");
+
+class Playlist{
+    constructor(name,songs=[]){
+        this.name=name
+        this.songs = songs
+    }
+
+    addSong(name, artists=[], length=0){
+        this.songs.push(new Song(name,artists,length))
+    }
+    
+   
+    removeSong(name){
+        this.songs.forEach((obj,idx) =>{
+            if(obj.n === name){this.songs.splice(idx,1)}
+        })
+
+    }
+
+    getNumberOfSongs(){ return this.songs.length}
+
+    getNamesOfSongs(){
+        return this.songs.reduce((acc,obj)=>{
+            return acc.concat(obj.name)
+        },[])
+    }
+
+    getTotalLength(){
+        return this.songs.reduce((acc,obj) =>{
+            return acc + obj.length
+        },0)
+       
+    }
+
+    getTotalDuration(){ 
+        const lengthSec = this.getTotalLength()
+        const minutes = Math.floor(lengthSec / 60);
+        const seconds = lengthSec - minutes * 60; 
+        return `${minutes} min ${seconds} seconds`
+
+    }
+
+
+    //***** HARD MODE *****
+    getArtists(){
+        return this.songs.reduce((acc,obj) =>{
+            //console.log(obj.artists);
+            obj.artists.forEach(artist =>{
+                //console.log(artist);
+                if(acc.indexOf(artist) === -1) acc.push(artist)
+            })
+            return acc
+        },[])
+    }
+
+    getMostCommonArtist(){
+        
+    }
+
+
+}
+//Tests
+console.log('############## PLAYLIST ####################')
+const newPlaylist = new Playlist('playyer')
+newPlaylist.addSong('Sunflower - Spider-Man: Intro',['Post Malone', 'Swae Lee'],158)
+newPlaylist.addSong("Motor Sport",["Nicki","Cardi B"],420)
+console.log(newPlaylist.getTotalLength())
+newPlaylist.removeSong('Sunflower - Spider-Man: Intro')
+console.log(newPlaylist.songs);
+console.log(newPlaylist.getTotalDuration());
 
 
 
@@ -73,3 +163,16 @@ const external_playlist = require('./playlist');
         loadedPlaylist.getTotalDuration();
 
 */
+console.log("************************");
+
+
+function loadExternalPlaylist(playlist){
+    return new Playlist(playlist.name,playlist.songs)
+}
+
+const loadedPlaylist = loadExternalPlaylist(external_playlist);
+console.log(loadedPlaylist.getNamesOfSongs());
+console.log(loadedPlaylist.getNumberOfSongs());
+console.log(loadedPlaylist.getTotalDuration());
+console.log(loadedPlaylist.getArtists());
+
