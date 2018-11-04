@@ -30,9 +30,23 @@ const external_playlist = require('./playlist');
 */
 class Song{
     constructor(name,artists=[],length=0){
-        this.name = name
+        this.name = this._setName(name)
         this.artists = artists
         this.length = length
+
+        
+    }
+
+    _setName(name){
+        if(typeof name !== 'string' || name.length < 1) throw new Error
+        return name
+    }
+
+    _setArtists(artists){
+        if(!Array.isArray(artists) || artists.length < 1) throw new Error
+        artists.forEach(artist =>{
+            if(typeof artist != "string") throw new Error("Artist must be a string")
+        })
     }
 
     getArtists(){return this.artists[0] }
@@ -128,10 +142,28 @@ class Playlist{
     }
 
     getMostCommonArtist(){
+        const arr1 = this.songs.reduce((acc,obj)=>{
+            obj.artists.forEach(artist=>{
+                acc.push(artist)
+            })
+            return acc
+        },[])
+        let name = ""
+        let nameCount = 0
+        for (let i = 0; i < arr1.length; i++) {
+            let count = 0
+            for (let j = i; j < arr1.length; j++) {
+                if(arr1[j] == arr1[i]) count++;
+            }
         
+            if(count > nameCount){
+                nameCount = count 
+                name = arr1[i]
+            } 
+        }   
+        let obj = {'name':name,'occurence':nameCount}    
+        return obj
     }
-
-
 }
 //Tests
 console.log('############## PLAYLIST ####################')
@@ -175,4 +207,4 @@ console.log(loadedPlaylist.getNamesOfSongs());
 console.log(loadedPlaylist.getNumberOfSongs());
 console.log(loadedPlaylist.getTotalDuration());
 console.log(loadedPlaylist.getArtists());
-
+console.log(loadedPlaylist.getMostCommonArtist());
