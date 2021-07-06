@@ -6,9 +6,41 @@
         calculatePerimeter() // Returns the perimeter of the rectangle
         isSquare() // Returns true or false if this rectangle is a square or not
 */
+class Rectangle{
+constructor(length, height){
+
+    this.length = length
+    this.height = height
+}
+
+ calculateArea (){
+return this.length * this.height
 
 
+}
+ calculatePerimeter (){
+return (2*this.length) + (2*this.height)
 
+
+}
+
+ isSquare (){
+if(this.length === this.height){
+
+    return true
+}
+
+else{
+    return false
+}
+
+}
+
+
+}
+
+const squAreIt = new Rectangle(6,7)
+console.log(squAreIt.isSquare())
 
 /*  2
     Define a @class called Circle
